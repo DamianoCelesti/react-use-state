@@ -8,13 +8,13 @@ export default function Language(props) {
 
         <div className="accordion-item">
             <h2 className="accordion-header">
-                <button className="btn btn-primary">
+                <button className={`btn ${isOpen ? "btn-warning" : "btn-primary"} `}>
                     {props.language.title}
                 </button>
             </h2>
             <div >
                 <div className="accordion-body">
-                    {props.language.description}
+                    {isOpen && props.language.description}
                 </div>
             </div>
         </div>
