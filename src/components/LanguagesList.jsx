@@ -1,4 +1,6 @@
 import Language from './Language.jsx'
+import LanguageCard from './LanguageCard.jsx'
+import { useState } from "react";
 
 const languages = [
     {
@@ -36,11 +38,29 @@ const languages = [
 
 
 export default function LanguagesList() {
+    const [activeLanguage, setActiveLanguage] = useState(null);
     return (
-        <div className="accordion">
-            {languages.map((language) => (
-                <Language key={language.id} language={language} />
-            ))}
+        <div className="d-flex flex-column gap-2">
+            <div className="d-flex justify-content-start gap-2">
+                {languages.map((language) => (
+                    <Language key={language.id} language={language}
+                        // controlla se language id è attivo, se activelanguage è uguale all id allora sarà considerato attivo
+                        isOpen={activeLanguage === language.id}
+                        onToggle={() => setActiveLanguage(language.id)}
+                    />
+
+                ))}
+            </div>
+            <div  >
+                {/* non si usa il map perchè mi crea 5 div inutili perchè mi cicla per tutto l array */}
+                {languages.map((language) => (
+                    <LanguageCard key={language.id} language={language}
+                        isOpen={activeLanguage === language.id}
+                        onToggle={() => setActiveLanguage(language.description)}
+                    />
+                ))}
+            </div>
+
         </div>
     )
 }
