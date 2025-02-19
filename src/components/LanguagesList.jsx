@@ -45,20 +45,16 @@ export default function LanguagesList() {
                 {languages.map((language) => (
                     <Language key={language.id} language={language}
                         // controlla se language id è attivo, se activelanguage è uguale all id allora sarà considerato attivo
-                        isOpen={activeLanguage === language.id}
-                        onToggle={() => setActiveLanguage(language.id)}
+                        isOpen={activeLanguage.id === language.id}
+                        onToggle={() => setActiveLanguage(language)}
                     />
 
                 ))}
             </div>
             <div  >
-                {/* non si usa il map perchè mi crea 5 div inutili perchè mi cicla per tutto l array */}
-                {languages.map((language) => (
-                    <LanguageCard key={language.id} language={language}
-                        isOpen={activeLanguage === language.id}
-                        onToggle={() => setActiveLanguage(language.description)}
-                    />
-                ))}
+
+                <LanguageCard activeLanguage={activeLanguage} />
+
             </div>
 
         </div>
